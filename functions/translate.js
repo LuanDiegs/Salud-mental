@@ -1,6 +1,11 @@
 const langSelect = document.getElementById('langSelect');
 const titulo = document.querySelector('.main-title');
 
+window.onload = () => {
+    console.log("oi");
+    changeLanguage();
+}
+
 function changeLanguage() {
     const valueSelect = langSelect.value;
     titulo.textContent = data[valueSelect].titulo;
