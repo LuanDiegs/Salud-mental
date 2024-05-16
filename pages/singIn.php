@@ -17,7 +17,7 @@
 </head>
 
 <style>
-    .container-login {
+    .container-singup {
         color: white;
         background-color: #454545;
         padding: 2%;
@@ -26,7 +26,7 @@
         transition: 0.5s;
     }
 
-    .btn-submit-login {
+    .btn-submit-singup {
         margin-top: 5%;
         background-color: #8c3dce;
         color: white;
@@ -34,7 +34,7 @@
         transition: 0.5s;
     }
 
-    .btn-submit-login:hover {
+    .btn-submit-singup:hover {
         background-color: #5a189a;
         color: white;
         transition: 0.5s;
@@ -50,23 +50,33 @@
 <body>
     <!-- Title -->
     <div class="container" style="padding: 2%; border-radius: 10px;">
-        <h1 class="text-center login-title" style="color: white;">LOGIN</h1>
+        <h1 class="text-center singup-title" style="color: white;">SIGN UP</h1>
     </div>
 
     <?php include '../parts/navbar.php' ?>
 
-    <div class="container container-login">
-        <h2 class="text-center login-container-title" style="font-weight: 500;"> Do your login here!</h2>
+    <div class="container container-singup">
+        <h2 class="text-center singup-container-title" style="font-weight: 500;"> Do your sign up here!</h2>
         <form>
+            <div class="form-group">
+                <label class="name-label" for="name">Name</label>
+                <input type="name" class="form-control" id="name" aria-describedby="emailHelp" required>
+            </div>
             <div class="form-group">
                 <label class="email-label" for="email">Email address</label>
                 <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
             </div>
             <div class="form-group">
-                <label class="password-label" for="password" required>Password</label>
-                <input type="password" class="form-control" id="password">
+                <label class="password-label" for="password">Password</label>
+                <input type="password" class="form-control" id="password" onkeyup="checkPasswords()" required>
             </div>
-            <button type="submit" class="btn btn-submit-login ">Submit</button>
+
+            <div class="form-group">
+                <label class="password-confirmation-label" for="password-confirmation">Password confirmation</label>
+                <input type="password" class="form-control" id="password-confirmation" onkeyup="checkPasswords()" required>
+                <p id='message-confirmation-passwords'></p>
+            </div>
+            <button type="submit" class="btn btn-submit-singup ">Submit</button>
         </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

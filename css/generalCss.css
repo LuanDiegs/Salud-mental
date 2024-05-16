@@ -1,9 +1,4 @@
-@font-face {
-    font-family: 'OdinRounded-Bold';
-    src: url('resources/fonts/OdinRounded-Bold.otf');
-}
-
 body {
     background-color: #282828;
-    font-family: 'rubik';
+    font-family: "Josefin Sans";
 }
