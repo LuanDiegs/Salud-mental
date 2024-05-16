@@ -66,16 +66,11 @@
 </style>
 
 <div class="container">
-    <!-- TITULO -->
-    <div class="container-xl" style="padding: 2%; border-radius: 10px;">
-        <h1 class="text-center main-title" style="color: white;">ECIA - SALUD MENTAL</h1>
-    </div>
-
     <!-- NAVBAR -->
     <div class="container-fluid navbar-principal">
         <div class="row">
             <div class="col-sm-4 my-auto navbar-item navbar-item-home">
-                <a href="#"><i class="fas fa-home"></i> HOME</a>
+                <a href="index.php" id="linkHome"><i class="fas fa-home"></i> HOME</a>
             </div>
             <div class="col-sm-4">
                 <select onchange="changeLanguage()" class="langSelect" aria-label="Selecione o idioma" id="langSelect">
@@ -85,7 +80,7 @@
                 </select>
             </div>
             <div class="col-sm-4 my-auto navbar-item navbar-item-login">
-                <a href="#"><i class="fas fa-user"></i> LOGIN</a>
+                <a href="pages/login.php" id="linkLogin"><i class="fas fa-user"></i> LOGIN</a>
             </div>
         </div>
     </div>

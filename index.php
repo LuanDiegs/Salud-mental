@@ -17,18 +17,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/generalCss.css">
 </head>
-<style>
-    @font-face {
-        font-family: 'OdinRounded-Bold';
-        src: url('resources/fonts/OdinRounded-Bold.otf');
-    }
-
-    body {
-        background-color: #282828;
-        font-family: 'rubik';
-    }
-</style>
 
 <body>
     <?php
@@ -44,7 +34,12 @@
     $sql = "SELECT * from produto";
     ?>
 
-    <!-- Inclui a navbar padrão do site -->
+    <!-- Title -->
+    <div class="container" style="padding: 2%; border-radius: 10px;">
+        <h1 class="text-center main-title" style="color: white;">ECIA - SALUD MENTAL</h1>
+    </div>
+
+    <!-- Includes the navbar in the page -->
     <?php include 'parts/navbar.php' ?>
 
     <!-- Cards -->

@@ -1,24 +1,27 @@
 const langSelect = document.getElementById('langSelect');
-const titulo = document.querySelector('.main-title');
-
-window.onload = () => {
-    console.log("oi");
-    changeLanguage();
-}
+const title = document.querySelector('.main-title');
 
 function changeLanguage() {
     const valueSelect = langSelect.value;
-    titulo.textContent = data[valueSelect].titulo;
+
+    //Change the title of the page
+    document.title = data[valueSelect].title
+
+    //Change the main title of the home page
+    if(title){
+        title.textContent = data[valueSelect].title;
+    }
+
 }
 
 var data = {
     "en_us":{
-        "titulo": "ECIA - Mental health",
+        "title": "ECIA - Mental health",
     },
     "pt_br":{
-        "titulo": "ECIA - Saúde mental"
+        "title": "ECIA - Saúde mental"
     },
     "esp":{
-        "titulo": "ECIA - Salud mental"
+        "title": "ECIA - Salud mental"
     }
 }
