@@ -53,8 +53,8 @@
                         <img src="resources/imagens/videogame.jpg" class="card-img-top" alt="...">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">Videgames e como isso afeta a personalidade</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-card mt-auto">Go somewhere</a>
+                            <p class="card-text">Resumo</p>
+                            <a href="pages/postPage.php" class="btn btn-card mt-auto">Go to post</a>
                         </div>
                     </div>
                 </div>
@@ -63,8 +63,8 @@
                         <img src="resources/imagens/natureza.png" class="card-img-top" alt="...">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">Natureza e a saude mental</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-card mt-auto">Go somewhere</a>
+                            <p class="card-text">Resumo</p>
+                            <a href="pages/postPage.php?id=1" class="btn btn-card mt-auto">Go to post</a>
                         </div>
                     </div>
                 </div>
@@ -73,8 +73,8 @@
                         <img src="resources/imagens/rpg-imagem.jpg" class="card-img-top" alt="...">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">Saúde mental e o RPG</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-card mt-auto">Go somewhere</a>
+                            <p class="card-text">Resumo</p>
+                            <a href="pages/postPage.php" class="btn btn-card mt-auto">Go to post</a>
                         </div>
                     </div>
                 </div>

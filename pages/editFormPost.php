@@ -17,7 +17,7 @@
 </head>
 
 <style>
-    .container-login {
+    .container-editFormPost {
         color: white;
         background-color: #454545;
         padding: 2%;
@@ -41,30 +41,54 @@
         box-shadow: white 0px 0px 3px;
     }
 
-    .email-label,
-    .password-label {
+    .text-post-label {
         font-size: 16px;
+        margin-top: 2%;
+    }
+
+    #title-post-input{
+        transition: 0.5s;
+        background-color: transparent;
+        color: white;
+        margin-bottom: 5%;
+        outline: 0;
+        border-width: 0 0 2px;
+        border-color: white;
+        border-radius: 0;
+        font-size: 48px;
+        text-align: center;
+    }
+
+    #title-post-input:focus{
+        transition: 0.5s;
+        border-color: #8c3dce;
+    }
+
+    #input-file-label-p{
+        font-size: 16px;
+        margin-bottom: 1%; 
     }
 </style>
 
 <body>
     <!-- Title -->
     <div class="container" style="padding: 2%; border-radius: 10px;">
-        <h1 class="text-center login-title" style="color: white;">LOGIN</h1>
+        <h1 class="text-center post-title" style="color: white;">POST</h1>
     </div>
 
     <?php include '../parts/navbar.php' ?>
 
-    <div class="container container-login">
-        <h2 class="text-center login-container-title" style="font-weight: 500;"> Do your login here!</h2>
+    <div class="container container-editFormPost">
         <form>
-            <div class="form-group">
-                <label class="email-label" for="email">Email address</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+            <input type="titlePost" class="form-control" id="title-post-input" focus>
+            <p id="input-file-label-p">Choose the cover image of your post</p>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="validatedCustomFile" accept="image/*" required>
+                <label class="custom-file-label post-file-label" for="validatedCustomFile">Choose file...</label>
             </div>
             <div class="form-group">
-                <label class="password-label" for="password" required>Password</label>
-                <input type="password" class="form-control" id="password">
+                <label class="text-post-label" for="text-post-input" required>Text post</label>
+                <textarea class="form-control" id="text-post-input" rows="5" required></textarea>
             </div>
             <button type="submit" class="btn btn-submit-login ">Submit</button>
         </form>
@@ -82,6 +106,13 @@
     }
 
     fixLinks();
+    
+    //File chooser js
+    $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        console.log($(this).val().split("\\").pop())
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
 </script>
 
 </html>
