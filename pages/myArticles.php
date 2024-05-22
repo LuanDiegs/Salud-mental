@@ -17,99 +17,87 @@
 </head>
 
 <style>
-    .container-editFormPost {
+    .container-myArticles {
         color: white;
-        background-color: #454545;
+        background-color: transparent;
+        border: 2px solid #8c3dce;
         padding: 2%;
         border-radius: 10px;
-        width: 50%;
-        transition: 0.5s;
-    }
-
-    .btn-submit-login {
-        margin-top: 5%;
-        background-color: #8c3dce;
-        color: white;
         width: 100%;
         transition: 0.5s;
     }
 
-    .btn-submit-login:hover {
+    .btn-delete,
+    .btn-edit {
+        margin-bottom: 2%;
+        background-color: #8c3dce;
+        color: white;
+        width: 100%;
+        height: 100%;
+        padding-top: 15%;
+        padding-bottom: 15%;
+        transition: 0.5s;
+        font-size: 24px;
+    }
+
+    .btn-delete:hover,
+    .btn-edit:hover {
         background-color: #5a189a;
         color: white;
         transition: 0.5s;
         box-shadow: white 0px 0px 3px;
+        border-radius: 10px;
     }
 
-    .text-post-label {
-        font-size: 16px;
-        margin-top: 2%;
+    .card-myArticle {
+        padding: 2%;
+        border-radius: 15px;
+        background-color: #1F1F1F !important;
     }
 
-    #title-post-input{
-        transition: 0.5s;
-        background-color: transparent;
-        color: white;
-        margin-bottom: 5%;
-        outline: 0;
-        border-width: 0 0 2px;
-        border-color: white;
-        border-radius: 0;
-        font-size: 48px;
-        text-align: center;
+    .card-img-myarticle {
+        width: 100% !important;
+        border-radius: 10px;
     }
 
-    #title-post-input:focus{
-        transition: 0.5s;
-        border-color: #8c3dce;
+    .card-post-title {
+        font-size: 24px;
     }
 
-    #input-file-label-p{
-        font-size: 16px;
-        margin-bottom: 1%; 
+    .button {
+        padding: 2%;
     }
-
-    .selectMainLanguage{
-        background-color: #353535;
-        width: 100%;
-        border-radius: 5px;
-        color: white;
-        font-size: 16px;
-        padding: 5px;
-    }
-
 </style>
 
 <body>
     <!-- Title -->
     <div class="container" style="padding: 2%; border-radius: 10px;">
-        <h1 class="text-center post-title" style="color: white;">POST</h1>
+        <h1 class="text-center myArticles-title" style="color: white;">MY ARTICLES</h1>
     </div>
 
     <?php include '../parts/navbar.php' ?>
 
-    <div class="container container-editFormPost">
-        <form>
-            <input type="titlePost" class="form-control" id="title-post-input" focus>
-            <p id="input-file-label-p">Choose the cover image of your post</p>
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="validatedCustomFile" accept="image/*" required>
-                <label class="custom-file-label post-file-label" for="validatedCustomFile">Choose file...</label>
+    <div class="container container-myArticles">
+        <div class="card card-myArticle h-100">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="../resources/imagens/videogame.jpg" class="card-img-myarticle" alt="...">
+                </div>
+                <div class="col-md-6 my-auto text-center">
+                    <h5 class="card-post-title my-auto">Videgames e como isso afeta a personalidade</h5>
+                </div>
+                <div class="col-md-3 my-auto">
+                    <div class="row">
+                        <div class="col-6 button">
+                            <a href="editFormPost.php?id=1" class="btn btn-edit"><i class="fas fa-edit"></i></a>
+                        </div>
+                        <div class="col-6 button">
+                            <button class="btn btn-delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group" style="margin-top: 5%;">
-                <label class="select-main-language" for="selectMainLanguage" required>Select the language that you are  writting the post</label>
-                <select class="selectMainLanguage" aria-label="Selecione o idioma" id="selectMainLanguage">
-                    <option value="1" selected>Portuguese Brazilian</option>
-                    <option value="2">English</option>
-                    <option value="3">Spanish</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label class="text-post-label" for="text-post-input" required>Main text post</label>
-                <textarea class="form-control" id="text-post-input" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-submit-login ">Submit</button>
-        </form>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -124,7 +112,7 @@
     }
 
     fixLinks();
-    
+
     //File chooser js
     $(".custom-file-input").on("change", function() {
         var fileName = $(this).val().split("\\").pop();

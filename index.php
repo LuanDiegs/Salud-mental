@@ -21,7 +21,22 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="css/generalCss.css">
 </head>
+<style>
+    .btn-create-post {
+        margin-bottom: 2%;
+        background-color: #8c3dce;
+        color: white;
+        width: 30%;
+        transition: 0.5s;
+    }
 
+    .btn-create-post:hover {
+        background-color: #5a189a;
+        color: white;
+        transition: 0.5s;
+        box-shadow: white 0px 0px 3px;
+    }
+</style>
 <body>
     <?php
     //Session do carrinho
@@ -44,6 +59,10 @@
     <!-- Includes the navbar in the page -->
     <?php include 'parts/navbar.php' ?>
 
+    <!-- Button -->
+    <div class="container text-right">
+        <a href="pages/editFormPost.php?id=0" type="submit" class="btn btn-create-post">Create a post</a>
+    </div>
     <!-- Cards -->
     <div class="container-cards">
         <div class="container">
@@ -54,7 +73,7 @@
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">Videgames e como isso afeta a personalidade</h5>
                             <p class="card-text">Resumo</p>
-                            <a href="pages/postPage.php" class="btn btn-card mt-auto">Go to post</a>
+                            <a href="pages/postPage.php?id=1" class="btn btn-card mt-auto">Go to post</a>
                         </div>
                     </div>
                 </div>

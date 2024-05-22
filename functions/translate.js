@@ -32,6 +32,14 @@ const postFileImagemLabel = document.querySelector('.post-file-label');
 const textPostLabel = document.querySelector('.text-post-label');
 const textPostInput = document.getElementById('text-post-input');
 
+const signInLink = document.querySelector('.signin-link');
+
+const createPostButton = document.querySelector('.btn-create-post');
+
+const selectMainLanguageLabel = document.querySelector('.select-main-language');
+
+const myPostsTitle = document.querySelector('.myArticles-title');
+
 // Tests
 //console.log("hello");
 
@@ -113,9 +121,30 @@ function changeLanguage() {
     }
 
     //Change the text of this component
+    if(signInLink){
+        signInLink.textContent = data[valueSelect].signInLink;
+    }
+
+    //Change the text of this component
+    if(createPostButton){
+        createPostButton.textContent = data[valueSelect].createPostButton;
+    }
+
+    //Change the text of this component
+    if(selectMainLanguageLabel){
+        selectMainLanguageLabel.textContent = data[valueSelect].selectMainLanguageLabel;
+    }
+
+    //Change the text of this component
+    if(myPostsTitle){
+        myPostsTitle.textContent = data[valueSelect].myPostsTitle;
+    }
+
+    //Change the text of this component
     if(messageConfirmationPasswords){
         checkPasswords();
     }
+
 
 }
 
@@ -123,21 +152,25 @@ var data = {
     "en_us": {
         "coverImagePostLabelP": "Choose the cover image of your post",
         "coverImagePostLabel": "Choose a image file",
+        "createPostButton": "Create a post",
         "emailLabel": "Email adress",
         "emailPlaceholder": "Enter your email here",
         "loginContainerTitle": "Do your login here!",
         "messageConfirmationPasswordsDontMatch": "The passwords don't match",
         "messageConfirmationPasswordsMatch": "The passwords match",
+        "myPostsTitle": "My posts",
         "nameLabel": "Name",
         "namePlaceholder": "Enter your name here",
         "passwordConfirmationLabel": "Password confirmation",
         "passwordConfirmationPlaceholder": "Enter your password again",
         "passwordLabel": "Password",
         "passwordPlaceholder": "Enter your password here",
+        "selectMainLanguageLabel": "Select the main language of your post",
+        "signInLink": "Don't have an account? Sign in!",
         "signUptitle": "SIGN UP",
         "signupContainerTitle": "Do your sign up here!",
         "submitBtn": "Submit",
-        "textPostLabel": "Text of your post",
+        "textPostLabel": "Main text of your post",
         "textPostPlaceholder": "Enter your text here",
         "title": "ECIA - Mental health",
         "titleEditFormPlaceholder": "Enter the title of the post"
@@ -145,21 +178,25 @@ var data = {
     "esp": {
         "coverImagePostLabelP": "Introduzca la imagen de portada de su post",
         "coverImagePostLabel": "Elige un archivo de imagen",
+        "createPostButton": "Crear una publicación",
         "emailLabel": "Email",
         "emailPlaceholder": "Introduzca su correo electrónico",
-        "loginContainerTitle": "Haga el login a continuación!",
+        "loginContainerTitle": "¡Haga el login a continuación!",
         "messageConfirmationPasswordsDontMatch": "Las contraseñas no coinciden",
         "messageConfirmationPasswordsMatch": "Las contraseñas coinciden",
+        "myPostsTitle": "Mis publicaciones",
         "nameLabel": "Nombre",
         "namePlaceholder": "Introduzca su nombre",
         "passwordConfirmationLabel": "Confirmación de contraseña",
         "passwordConfirmationPlaceholder": "Introduzca su contraseña de nuevo",
         "passwordLabel": "Contraseña",
         "passwordPlaceholder": "Introduzca su contraseña",
+        "selectMainLanguageLabel": "Selecciona el idioma principal de su publicación",
+        "signInLink": "¿No tienes una cuenta? ¡Inscríbase!",
         "signUptitle": "INSCRIBIRSE",
-        "signupContainerTitle": "Haga su cadastro a continuación!",
+        "signupContainerTitle": "¡Haga su cadastro a continuación!",
         "submitBtn": "Enviar",
-        "textPostLabel": "Texto de su post",
+        "textPostLabel": "Texto principal de tu publicación",
         "textPostPlaceholder": "Introduzca el texto de su post aqui",
         "title": "ECIA - Salud mental",
         "titleEditFormPlaceholder": "Introduzca el título del post"
@@ -167,21 +204,25 @@ var data = {
     "pt_br": {
         "coverImagePostLabelP": "Insira a imagem de capa do seu post",
         "coverImagePostLabel": "Escolha um arquivo de imagem",
+        "createPostButton": "Criar uma postagem",
         "emailLabel": "Email",
         "emailPlaceholder": "Insira o seu email aqui",
         "loginContainerTitle": "Faça o seu login aqui!",
         "messageConfirmationPasswordsDontMatch": "As senhas não coincidem",
         "messageConfirmationPasswordsMatch": "As senhas coincidem",
+        "myPostsTitle": "Minhas postagens",
         "nameLabel": "Nome",
         "namePlaceholder": "Insira seu nome aqui",
         "passwordConfirmationLabel": "Confirmação de senha",
         "passwordConfirmationPlaceholder": "Insira sua senha novamente",
         "passwordLabel": "Senha",
         "passwordPlaceholder": "Insira sua senha aqui",
+        "selectMainLanguageLabel": "Selecione a lingua principal do seu post",
+        "signInLink": "Não tem uma conta? Inscreva-se!",
         "signUptitle": "INSCREVER-SE",
         "signupContainerTitle": "Faça seu cadastro aqui!",
         "submitBtn": "Enviar",
-        "textPostLabel": "Texto do post",
+        "textPostLabel": "Texto principal da sua postagem",
         "textPostPlaceholder": "Insira o texto do seu post aqui",
         "title": "ECIA - Saúde mental",
         "titleEditFormPlaceholder": "Insira o título da postagem"
@@ -210,8 +251,8 @@ function fixLinks(){
     navbarHome.href = "../index.php";
 
     const navbarLogin = document.getElementById("linkLogin");
-    navbarLogin.href = "login.php";
+    navbarLogin.href = "login.php"; 
 
-    const navbarSignIn = document.getElementById("linkSignIn");
-    navbarSignIn.href = "signin.php";
+    const navbarMyPosts = document.getElementById("linkMyPosts");
+    navbarMyPosts.href = "myArticles.php"; 
 }
