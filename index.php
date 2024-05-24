@@ -37,6 +37,7 @@
         box-shadow: white 0px 0px 3px;
     }
 </style>
+
 <body>
     <?php
     //Session do carrinho
@@ -69,31 +70,28 @@
             <div class="row">
                 <div class="col">
                     <div class="card h-100">
-                        <img src="resources/imagens/videogame.jpg" class="card-img-top" alt="...">
+                        <img src="resources/imagens/article1.jpg" class="card-img-top" alt="...">
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Videgames e como isso afeta a personalidade</h5>
-                            <p class="card-text">Resumo</p>
+                            <h5 class="card-title card-title-1">Videgames e como isso afeta a personalidade</h5>
                             <a href="pages/postPage.php?id=1" class="btn btn-card mt-auto">Go to post</a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card h-100">
-                        <img src="resources/imagens/natureza.png" class="card-img-top" alt="...">
+                        <img src="resources/imagens/article2.jpg" class="card-img-top" alt="...">
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Natureza e a saude mental</h5>
-                            <p class="card-text">Resumo</p>
-                            <a href="pages/postPage.php?id=1" class="btn btn-card mt-auto">Go to post</a>
+                            <h5 class="card-title card-title-2">Natureza e a saude mental</h5>
+                            <a href="pages/postPage.php?id=2" class="btn btn-card mt-auto">Go to post</a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card h-100">
-                        <img src="resources/imagens/rpg-imagem.jpg" class="card-img-top" alt="...">
+                        <img src="resources/imagens/article3.jpg" class="card-img-top" alt="...">
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Saúde mental e o RPG</h5>
-                            <p class="card-text">Resumo</p>
-                            <a href="pages/postPage.php" class="btn btn-card mt-auto">Go to post</a>
+                            <h5 class="card-title card-title-3">Saúde mental e o RPG</h5>
+                            <a href="pages/postPage.php?id=3" class="btn btn-card mt-auto">Go to post</a>
                         </div>
                     </div>
                 </div>
