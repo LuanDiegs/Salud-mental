@@ -81,7 +81,7 @@
         <div class="card card-myArticle h-100">
             <div class="row">
                 <div class="col-md-3">
-                    <img src="../resources/imagens/videogame.jpg" class="card-img-myarticle" alt="...">
+                    <img src="../resources/imagens/article1.jpg" class="card-img-myarticle" alt="...">
                 </div>
                 <div class="col-md-6 my-auto text-center">
                     <h5 class="card-post-title my-auto">Videgames e como isso afeta a personalidade</h5>

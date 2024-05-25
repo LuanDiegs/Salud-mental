@@ -80,7 +80,7 @@
         </div>
         <div class="col-sm-4 my-auto navbar-item navbar-item-login">
             <a href="pages/login.php" id="linkLogin"><i class="fas fa-user"></i> LOGIN |||</a>
-            <a href="pages/myArticles.php" id="linkMyPosts"><i class="fas fa-user"></i> MY POSTS (TEST)</a>
+            <a href="pages/myPosts.php" id="linkMyPosts"><i class="fas fa-user"></i> MY POSTS (TEST)</a>
         </div>
     </div>
 </div>
