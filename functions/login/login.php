@@ -5,26 +5,31 @@ include_once '../banco.php';
 //Conectar o banco
 $bd = conexao();
 
-$nome = filter_input(INPUT_POST, "name");
 $email = filter_input(INPUT_POST, "email");
 $senha = filter_input(INPUT_POST, "password");
 
-if ($email && $nome && $senha) {
-    try {
-        $sqlInsert =
-            "INSERT IGNORE INTO usuarios 
-                (nome, email, senha)
-            VALUES 
-                ('$nome', '$email', '$senha')";
+$usuario = null;
 
-        $resultado = $bd->query($sqlInsert);
+if ($email && $senha) {
+    try {
+        $sqlGet = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'";
+
+        $resultado = $bd->query($sqlGet);
+        $usuario = $resultado->fetch(PDO::FETCH_ASSOC);
     } catch (Exception $ex) {
         echo $ex->getMessage();
         die();
     }
 
-    echo "console.log('Usuário criado com sucesso!')";
-    header("location: ../../pages/login.php");
+    if ($usuario) {
+
+        $_SESSION["logado"] = true;
+        $_SESSION["usuario"] = $usuario;
+
+        header("location: ../../index.php");
+    } else {
+        header("location: ../../pages/login.php?invalido=true");
+    }
 } else {
     header("location: ../../pages/login.php");
 }

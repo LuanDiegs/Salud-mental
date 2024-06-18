@@ -44,9 +44,6 @@
 
 <body>
     <?php
-    //Session do carrinho
-    session_start();
-
     include_once './functions/banco.php';
 
     $sql = "SELECT * from artigos";
@@ -54,7 +51,6 @@
     //Conectar o banco
     $bd = conexao();
     $resultado = $bd->query($sql);
-
     ?>
 
     <!-- Title -->

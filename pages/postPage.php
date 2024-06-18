@@ -53,8 +53,6 @@
 <body>
     <?php
     //Session do carrinho
-    session_start();
-
     include_once '../functions/banco.php';
 
     //Conectar o banco

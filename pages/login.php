@@ -46,13 +46,13 @@
         font-size: 16px;
     }
 
-    .signin-link{
+    .signin-link {
         margin-top: 2%;
         font-size: 16px;
         color: #A18EE0;
     }
 
-    .container-sign-in{
+    .container-sign-in {
         margin-top: 2%;
         width: 100%;
     }
@@ -64,18 +64,20 @@
         <h1 class="text-center login-title" style="color: white;">LOGIN</h1>
     </div>
 
-    <?php include '../parts/navbar.php' ?>
+    <?php
+    include '../parts/navbar.php';
+    ?>
 
     <div class="container container-login">
         <h2 class="text-center login-container-title" style="font-weight: 500;"> Do your login here!</h2>
-        <form>
+        <form id="signUn" method="POST" action="../functions/login/login.php">
             <div class="form-group">
                 <label class="email-label" for="email">Email address</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
             </div>
             <div class="form-group">
                 <label class="password-label" for="password" required>Password</label>
-                <input type="password" class="form-control" id="password">
+                <input type="password" class="form-control" id="password" name="password">
             </div>
             <button type="submit" class="btn btn-submit-login ">Submit</button>
         </form>

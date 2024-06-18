@@ -355,10 +355,19 @@ function fixLinks(){
     navbarHome.href = "../index.php";
 
     const navbarLogin = document.getElementById("linkLogin");
-    navbarLogin.href = "login.php"; 
+    if(navbarLogin){
+        navbarLogin.href = "login.php"; 
+    }
 
     const navbarMyPosts = document.getElementById("linkMyPosts");
-    navbarMyPosts.href = "myPosts.php"; 
+    if(navbarMyPosts){
+        navbarMyPosts.href = "myPosts.php"; 
+    }
+
+    const navbarDeslogar = document.getElementById("linkDeslogar");
+    if(navbarDeslogar){
+        navbarDeslogar.href = "../functions/login/deslogar.php"; 
+    }
 }
 
 

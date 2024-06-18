@@ -65,13 +65,19 @@
     }
 </style>
 
+<?php
+//Session do carrinho
+session_start();
+
+?>
+
 <!-- NAVBAR -->
 <div class="container navbar-principal">
     <div class="row">
         <div class="col-sm-4 my-auto navbar-item navbar-item-home">
             <a href="index.php" id="linkHome"><i class="fas fa-home"></i> HOME</a>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4" style="margin-bottom: 0;">
             <select onchange="changeLanguage()" class="langSelect" aria-label="Selecione o idioma" id="langSelect">
                 <option value="pt_br" selected>Portuguese Brazilian</option>
                 <option value="en_us">English</option>
@@ -79,8 +85,19 @@
             </select>
         </div>
         <div class="col-sm-4 my-auto navbar-item navbar-item-login">
-            <a href="pages/login.php" id="linkLogin"><i class="fas fa-user"></i> LOGIN |||</a>
-            <a href="pages/myPosts.php" id="linkMyPosts"><i class="fas fa-user"></i> MY POSTS (TEST)</a>
+
+            <?php
+            if (!isset($_SESSION['logado'])) {
+            ?>
+                <a href="pages/login.php" id="linkLogin"><i class="fas fa-user"></i> LOGIN</a>
+            <?php
+            } else {
+            ?>
+                <a style="margin-right: 1%" href="pages/myPosts.php" id="linkMyPosts"><i class="fas fa-user"></i> MY POSTS</a>
+                <a href="functions/login/deslogar.php" id="linkDeslogar"><i class="fas fa-reply" aria-hidden="true"></i> DESLOGAR</a>
+            <?php
+            }
+            ?>
         </div>
     </div>
 </div>
