@@ -161,24 +161,36 @@ function changeLanguage() {
     //Change the text of this component
     if(postText){
         var textArticle = "article"+ idArticle.toString()+"Text"
-        postText.textContent = posts[valueSelect][textArticle];
+        if(posts[valueSelect][textArticle]){
+            postText.textContent = posts[valueSelect][textArticle];
+        }
     }
 
     //Change the text of this component
     if(postTitleText){
         var textTitleArticle = "article"+ idArticle.toString()+"Title"
-        postTitleText.textContent = posts[valueSelect][textTitleArticle];
+
+        if(posts[valueSelect][textTitleArticle]){
+            postTitleText.textContent = posts[valueSelect][textTitleArticle];
+        }
     }
 
     //Change the text of this component
     if(authorPostText){
         var authorArticle = "authorArticle"+ idArticle.toString();
-        authorPostText.textContent = posts[valueSelect][authorArticle];
+        if(posts[valueSelect][authorArticle]){
+            authorPostText.textContent = posts[valueSelect][authorArticle];
+        }
     }
 
     //Change the text of this component
     if(imagePostText){
-        var pathImage = "../resources/imagens/article"+ idArticle.toString()+".jpg";
+        var pathImage = "../resources/imagens/default.jpg";
+
+        if(posts[valueSelect][authorArticle]){
+            pathImage = "../resources/imagens/article"+ idArticle.toString()+".jpg";
+        }   
+
         imagePostText.src = pathImage;
     }
 
@@ -349,6 +361,7 @@ function fixLinks(){
     navbarMyPosts.href = "myPosts.php"; 
 }
 
+
 //Commom
 function parseURLParams(url) {
     var queryStart = url.indexOf("?") + 1,
@@ -368,4 +381,16 @@ function parseURLParams(url) {
         parms[n].push(nv.length === 2 ? v : null);
     }
     return parms;
+}
+
+//Add a php element to a data
+function addElementToJson() {
+    fetch('path/to/yourfile.php')
+        .then(response => response.json())
+        .then(data => {
+            // Adiciona o novo elemento ao JSON
+            jsonData.newElement = data;
+            console.log(jsonData); // Exibe o JSON atualizado no console
+        })
+        .catch(error => console.error('Erro:', error));
 }

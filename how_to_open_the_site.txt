@@ -1,0 +1,10 @@
+1 - Install XAMPP
+https://www.apachefriends.org/pt_br/download.html
+
+2 - Put the folder of the project in the htdocs folder in xampp
+Ex: C:\xampp\htdocs
+
+3 - Incialize apache and mySQL in xampp control panel.
+
+4 - Put in the url the path to the folder with localhost.
+Ex: http://localhost/salud-mental/

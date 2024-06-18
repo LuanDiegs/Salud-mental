@@ -36,6 +36,10 @@
         transition: 0.5s;
         box-shadow: white 0px 0px 3px;
     }
+
+    .col-sm-4 {
+        margin-bottom: 2%;
+    }
 </style>
 
 <body>
@@ -43,13 +47,14 @@
     //Session do carrinho
     session_start();
 
-    if (!isset($_SESSION['carrinho'])) {
-        $_SESSION['carrinho'] = array();
-    }
-
     include_once './functions/banco.php';
 
-    $sql = "SELECT * from produto";
+    $sql = "SELECT * from artigos";
+
+    //Conectar o banco
+    $bd = conexao();
+    $resultado = $bd->query($sql);
+
     ?>
 
     <!-- Title -->
@@ -68,7 +73,7 @@
     <div class="container-cards">
         <div class="container">
             <div class="row">
-                <div class="col">
+                <div class="col-sm-4">
                     <div class="card h-100">
                         <img src="resources/imagens/article1.jpg" class="card-img-top" alt="...">
                         <div class="card-body d-flex flex-column">
@@ -77,7 +82,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col-sm-4">
                     <div class="card h-100">
                         <img src="resources/imagens/article2.jpg" class="card-img-top" alt="...">
                         <div class="card-body d-flex flex-column">
@@ -86,7 +91,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col-sm-4">
                     <div class="card h-100">
                         <img src="resources/imagens/article3.jpg" class="card-img-top" alt="...">
                         <div class="card-body d-flex flex-column">
@@ -95,6 +100,26 @@
                         </div>
                     </div>
                 </div>
+
+                <?php while ($dado = $resultado->fetch(PDO::FETCH_ASSOC)) {
+                    $nomeImagem = "default.jpg";
+
+                    if ($dado['nomeImagem']) {
+                        $nomeImagem = $dado['nomeImagem'];
+                    }
+                ?>
+                    <div class="col-sm-4">
+                        <div class="card h-100">
+                            <img src="resources/imagens/<?= $nomeImagem; ?>" class="card-img-top" alt="...">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title card-title-<?= $dado["id"]; ?>"><?= $dado["titulo"]; ?></h5>
+                                <a href="pages/postPage.php?id=<?= $dado["id"]; ?>" class="btn btn-card mt-auto">Go to post</a>
+                            </div>
+                        </div>
+                    </div>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </div>

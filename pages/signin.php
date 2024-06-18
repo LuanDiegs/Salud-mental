@@ -57,18 +57,18 @@
 
     <div class="container container-signup">
         <h2 class="text-center signup-container-title" style="font-weight: 500;"> Do your sign up here!</h2>
-        <form>
+        <form id="signIn" method="POST" action="../functions/login/cadastrar.php">
             <div class="form-group">
                 <label class="name-label" for="name">Name</label>
-                <input type="name" class="form-control" id="name" aria-describedby="emailHelp" required>
+                <input type="name" class="form-control" id="name" name="name" required>
             </div>
             <div class="form-group">
                 <label class="email-label" for="email">Email address</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                <input type="email" class="form-control" id="email" name="email" required>
             </div>
             <div class="form-group">
                 <label class="password-label" for="password">Password</label>
-                <input type="password" class="form-control" id="password" onkeyup="checkPasswords()" required>
+                <input type="password" class="form-control" id="password" name="password" onkeyup="checkPasswords()" required>
             </div>
 
             <div class="form-group">

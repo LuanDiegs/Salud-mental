@@ -51,14 +51,32 @@
 </style>
 
 <body>
+    <?php
+    //Session do carrinho
+    session_start();
+
+    include_once '../functions/banco.php';
+
+    //Conectar o banco
+    $bd = conexao();
+    $sqlArtigo = "SELECT * from artigos where id = '" . $_GET['id'] . "'";
+    $resultadoArtigo = $bd->query($sqlArtigo);
+    $artigo = $resultadoArtigo->fetch(PDO::FETCH_ASSOC);
+
+    if ($artigo) {
+        $sqlUsuario = "SELECT * from usuarios where id = '" . $artigo['idUsuarioCriador'] . "'";
+        $resultadoUsuario = $bd->query($sqlUsuario);
+        $usuario = $resultadoUsuario->fetch(PDO::FETCH_ASSOC);
+    }
+    ?>
+
     <?php include '../parts/navbar.php' ?>
 
     <div class="container container-post">
         <img class="img-fluid img-post">
-        <p class="text-left font-weight-bold title-post">TITLE</p>
-        <p class="text-justify auditory-data-post">Created by Luan Diego in 20 May 2024 at 12:43</p>
-        <div class="text-justify text-post post-text">
-        </div>
+        <p class="text-left font-weight-bold title-post"><?= $artigo["titulo"]; ?></p>
+        <p class="text-justify auditory-data-post">Created by <?= $usuario["nome"]; ?> in <?= databr($artigo["dataCriacao"]); ?></p>
+        <div class="text-justify text-post post-text"> <?= $artigo["textoPortugues"]; ?> </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
