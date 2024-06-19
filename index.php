@@ -62,9 +62,15 @@
     <?php include 'parts/navbar.php' ?>
 
     <!-- Button -->
-    <div class="container text-right">
-        <a href="pages/editFormPost.php?id=0" type="submit" class="btn btn-create-post">Create a post</a>
-    </div>
+    <?php
+    if ($_SESSION["logado"]) {
+    ?>
+        <div class="container text-right">
+            <a href="pages/editFormPost.php?id=0" type="submit" class="btn btn-create-post">Create a post</a>
+        </div>
+    <?php
+    }
+    ?>
     <!-- Cards -->
     <div class="container-cards">
         <div class="container">

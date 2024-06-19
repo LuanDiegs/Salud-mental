@@ -71,7 +71,14 @@
     <?php include '../parts/navbar.php' ?>
 
     <div class="container container-post">
-        <img class="img-fluid img-post">
+        <?php
+        if ($artigo && $artigo['nomeImagem']) {
+            echo '<img class="img-fluid img-post" src="../resources/imagens/' . $artigo['nomeImagem'] . '">';
+        } else {
+            echo '<img class="img-fluid img-post" src="../resources/imagens/default.jpg">';
+        }
+
+        ?>
         <p class="text-left font-weight-bold title-post"><?= $artigo["titulo"]; ?></p>
         <p class="text-justify auditory-data-post">Created by <?= $usuario["nome"]; ?> in <?= databr($artigo["dataCriacao"]); ?></p>
         <div class="text-justify text-post post-text"> <?= $artigo["textoPortugues"]; ?> </div>

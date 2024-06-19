@@ -46,7 +46,7 @@
         margin-top: 2%;
     }
 
-    #title-post-input{
+    #title-post-input {
         transition: 0.5s;
         background-color: transparent;
         color: white;
@@ -59,17 +59,17 @@
         text-align: center;
     }
 
-    #title-post-input:focus{
+    #title-post-input:focus {
         transition: 0.5s;
         border-color: #8c3dce;
     }
 
-    #input-file-label-p{
+    #input-file-label-p {
         font-size: 16px;
-        margin-bottom: 1%; 
+        margin-bottom: 1%;
     }
 
-    .selectMainLanguage{
+    .selectMainLanguage {
         background-color: #353535;
         width: 100%;
         border-radius: 5px;
@@ -77,7 +77,6 @@
         font-size: 16px;
         padding: 5px;
     }
-
 </style>
 
 <body>
@@ -86,18 +85,26 @@
         <h1 class="text-center post-title" style="color: white;">POST</h1>
     </div>
 
-    <?php include '../parts/navbar.php' ?>
+    <?php
+    include '../parts/navbar.php';
+
+    $hrefCadastrarOuEditar = "../functions/posts/cadastrar.php";
+
+    if (isset($_GET['id']) && $_GET['id'] != 0) {
+        $hrefCadastrarOuEditar = "../functions/posts/editar.php";
+    }
+    ?>
 
     <div class="container container-editFormPost">
-        <form>
-            <input type="titlePost" class="form-control" id="title-post-input" focus>
+        <form id="editFormPost" method="POST" action="<?= $hrefCadastrarOuEditar; ?>" enctype="multipart/form-data">
+            <input type="titlePost" class="form-control" name="title-post-input" id="title-post-input" focus>
             <p id="input-file-label-p">Choose the cover image of your post</p>
             <div class="custom-file">
-                <input type="file" class="custom-file-input" id="validatedCustomFile" accept="image/*" required>
+                <input type="file" class="custom-file-input" name="validatedCustomFile" id="validatedCustomFile" required>
                 <label class="custom-file-label post-file-label" for="validatedCustomFile">Choose file...</label>
             </div>
             <div class="form-group" style="margin-top: 5%;">
-                <label class="select-main-language" for="selectMainLanguage" required>Select the language that you are  writting the post</label>
+                <label class="select-main-language" for="selectMainLanguage" required>Select the language that you are writting the post</label>
                 <select class="selectMainLanguage" aria-label="Selecione o idioma" id="selectMainLanguage">
                     <option value="1" selected>Portuguese Brazilian</option>
                     <option value="2">English</option>
@@ -106,9 +113,9 @@
             </div>
             <div class="form-group">
                 <label class="text-post-label" for="text-post-input" required>Main text post</label>
-                <textarea class="form-control" id="text-post-input" rows="5" required></textarea>
+                <textarea class="form-control" name="text-post-input" id="text-post-input" rows="5" required></textarea>
             </div>
-            <button type="submit" class="btn btn-submit-login ">Submit</button>
+            <button type="submit" class="btn btn-submit-login">Submit</button>
         </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -124,7 +131,7 @@
     }
 
     fixLinks();
-    
+
     //File chooser js
     $(".custom-file-input").on("change", function() {
         var fileName = $(this).val().split("\\").pop();

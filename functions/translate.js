@@ -189,9 +189,8 @@ function changeLanguage() {
 
         if(posts[valueSelect][authorArticle]){
             pathImage = "../resources/imagens/article"+ idArticle.toString()+".jpg";
+            imagePostText.src = pathImage;
         }   
-
-        imagePostText.src = pathImage;
     }
 
     //Change the text of this component
