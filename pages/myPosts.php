@@ -50,7 +50,10 @@
     }
 
     .card-myArticle {
+        margin-top: 2%;
         padding: 2%;
+        padding-left: 5%;
+        padding-right: 5%;
         border-radius: 15px;
         background-color: #1F1F1F !important;
     }
@@ -70,39 +73,79 @@
 </style>
 
 <body>
-    <!-- Title -->
-    <div class="container" style="padding: 2%; border-radius: 10px;">
-        <h1 class="text-center myArticles-title" style="color: white;">MY ARTICLES</h1>
-    </div>
+    <?php
+    session_start();
 
-    <?php include '../parts/navbar.php' ?>
+    if (!isset($_SESSION["logado"])) {
+        echo
+        '<div class="container" style="padding: 2%; border-radius: 10px;">
+            <h1 class="text-center myArticles-doLogin" style="color: white;">Por favor, faca o login!</h1>
+        </div>';
+    } else {
+        echo
+        '<!-- Title -->
+        <div class="container" style="padding: 2%; border-radius: 10px;">
+            <h1 class="text-center myArticles-title" style="color: white;">MY ARTICLES</h1>
+        </div>';
 
-    <div class="container container-myArticles">
-        <div class="card card-myArticle h-100">
-            <div class="row">
-                <div class="col-md-3">
-                    <img src="../resources/imagens/article1.jpg" class="card-img-myarticle" alt="...">
-                </div>
-                <div class="col-md-6 my-auto text-center">
-                    <h5 class="card-post-title my-auto">Videgames e como isso afeta a personalidade</h5>
-                </div>
-                <div class="col-md-3 my-auto">
+        include '../parts/navbar.php';
+
+        include_once '../functions/banco.php';
+
+        $idUsuario = $_SESSION["usuario"]["id"];
+        $sql = "SELECT * from artigos where idUsuarioCriador = '" . $idUsuario . "'";
+
+        //Conectar o banco
+        $bd = conexao();
+        $resultado = $bd->query($sql);
+    ?>
+
+        <?php
+        if (isset($_SESSION["logado"])) {
+        ?>
+            <div class="container text-right">
+                <a href="pages/editFormPost.php?id=0" type="submit" class="btn btn-create-post">Create a post</a>
+            </div>
+        <?php
+        }
+        ?>
+        <div class="container container-myArticles">
+            <?php
+            while ($dado = $resultado->fetch(PDO::FETCH_ASSOC)) {
+                $nomeImagem = "default.jpg";
+
+                if ($dado['nomeImagem']) {
+                    $nomeImagem = $dado['nomeImagem'];
+                }
+            ?>
+                <div class="card card-myArticle h-100">
                     <div class="row">
-                        <div class="col-6 button">
-                            <a href="editFormPost.php?id=1" class="btn btn-edit"><i class="fas fa-edit"></i></a>
+                        <div class="col-md-3">
+                            <img src="../resources/imagens/<?= $nomeImagem; ?>" class="card-img-myarticle" alt="...">
                         </div>
-                        <div class="col-6 button">
-                            <button class="btn btn-delete"><i class="fas fa-trash"></i></button>
+                        <div class="col-md-6 my-auto text-center">
+                            <h5 class="card-post-title my-auto"><?= $dado['titulo']; ?></h5>
+                        </div>
+                        <div class="col-md-3 my-auto">
+                            <div class="row">
+                                <div class="col-6 button">
+                                    <a href="editFormPost.php?id=<?= $dado['id']; ?>" class="btn btn-edit"><i class="fas fa-edit"></i></a>
+                                </div>
+                                <div class="col-6 button">
+                                    <a href="../functions/posts/deletar.php?id=<?= $dado['id']; ?>" class="btn btn-delete"><i class="fas fa-trash"></i></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php } ?>
         </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="../functions/translate.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="../functions/translate.js" type="text/javascript"></script>
+
+    <?php } ?>
 </body>
 
 <script>

@@ -77,6 +77,11 @@
         font-size: 16px;
         padding: 5px;
     }
+
+    #imageView {
+        margin-top: 5%;
+        border-radius: 5px;
+    }
 </style>
 
 <body>
@@ -87,24 +92,33 @@
 
     <?php
     include '../parts/navbar.php';
+    include_once '../functions/banco.php';
 
     $hrefCadastrarOuEditar = "../functions/posts/cadastrar.php";
+    $artigo = null;
+    $bd = conexao();
 
     if (isset($_GET['id']) && $_GET['id'] != 0) {
-        $hrefCadastrarOuEditar = "../functions/posts/editar.php";
+        $hrefCadastrarOuEditar = "../functions/posts/atualizar.php?id=" . $_GET['id'];
+        $idArtigo = $_GET['id'];
+        $sqlGet = "SELECT * FROM artigos WHERE id = '$idArtigo'";
+        $resultadoGet = $bd->query($sqlGet);
+
+        $artigo = $resultadoGet->fetch(PDO::FETCH_ASSOC);
     }
     ?>
 
     <div class="container container-editFormPost">
         <form id="editFormPost" method="POST" action="<?= $hrefCadastrarOuEditar; ?>" enctype="multipart/form-data">
-            <input type="titlePost" class="form-control" name="title-post-input" id="title-post-input" focus>
+            <input type="titlePost" class="form-control" name="title-post-input" id="title-post-input" <?php if ($artigo && $artigo['titulo']) echo 'value="' . $artigo['titulo'] . '"' ?> focus>
             <p id="input-file-label-p">Choose the cover image of your post</p>
             <div class="custom-file">
-                <input type="file" class="custom-file-input" name="validatedCustomFile" id="validatedCustomFile" required>
+                <input type="file" class="custom-file-input" name="validatedCustomFile" id="validatedCustomFile">
                 <label class="custom-file-label post-file-label" for="validatedCustomFile">Choose file...</label>
             </div>
-            <div class="form-group" style="margin-top: 5%;">
-                <label class="select-main-language" for="selectMainLanguage" required>Select the language that you are writting the post</label>
+            <img style id="imageView" width="100%" <?php if ($artigo && $artigo['nomeImagem']) echo 'src="../resources/imagens/' . $artigo['nomeImagem'] . '"' ?>>
+            <div class="form-group select-main-language-div" style="margin-top: 5%;">
+                <label class="select-main-language" for="selectMainLanguage">Select the language that you are writting the post</label>
                 <select class="selectMainLanguage" aria-label="Selecione o idioma" id="selectMainLanguage">
                     <option value="1" selected>Portuguese Brazilian</option>
                     <option value="2">English</option>
@@ -113,7 +127,7 @@
             </div>
             <div class="form-group">
                 <label class="text-post-label" for="text-post-input" required>Main text post</label>
-                <textarea class="form-control" name="text-post-input" id="text-post-input" rows="5" required></textarea>
+                <textarea class="form-control" name="text-post-input" id="text-post-input" rows="5" required><?php if ($artigo && $artigo['textoPortugues']) echo $artigo['textoPortugues'] ?></textarea>
             </div>
             <button type="submit" class="btn btn-submit-login">Submit</button>
         </form>
@@ -138,6 +152,26 @@
         console.log($(this).val().split("\\").pop())
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
+
+    // Change image
+    let fotoProd = document.getElementById("imageView");
+    let arquivo = document.getElementById("validatedCustomFile");
+
+    arquivo.addEventListener("change", function() {
+        exibir(arquivo, fotoProd);
+    });
+
+    function exibir(arquivo, foto) {
+        if (arquivo.files.length != 1) {
+            return;
+        }
+        var r = new FileReader();
+        r.onload = function() {
+            foto.src = r.result;
+        }
+        r.readAsDataURL(arquivo.files[0]);
+
+    }
 </script>
 
 </html>

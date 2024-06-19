@@ -63,11 +63,21 @@
         text-decoration: none;
         cursor: pointer;
     }
+
+    .btn-create-post {
+        margin-bottom: 2%;
+        background-color: #8c3dce;
+        color: white;
+        width: 30%;
+        transition: 0.5s;
+    }
 </style>
 
 <?php
-//Session do carrinho
-session_start();
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    //Session do carrinho
+    session_start();
+}
 
 ?>
 

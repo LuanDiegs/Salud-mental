@@ -22,14 +22,6 @@
     <link rel="stylesheet" href="css/generalCss.css">
 </head>
 <style>
-    .btn-create-post {
-        margin-bottom: 2%;
-        background-color: #8c3dce;
-        color: white;
-        width: 30%;
-        transition: 0.5s;
-    }
-
     .btn-create-post:hover {
         background-color: #5a189a;
         color: white;
@@ -59,11 +51,10 @@
     </div>
 
     <!-- Includes the navbar in the page -->
-    <?php include 'parts/navbar.php' ?>
-
-    <!-- Button -->
     <?php
-    if ($_SESSION["logado"]) {
+    include 'parts/navbar.php';
+
+    if (isset($_SESSION["logado"])) {
     ?>
         <div class="container text-right">
             <a href="pages/editFormPost.php?id=0" type="submit" class="btn btn-create-post">Create a post</a>
