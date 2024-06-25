@@ -83,7 +83,6 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     //Session do carrinho
     session_start();
 }
-
 ?>
 
 <!-- NAVBAR -->

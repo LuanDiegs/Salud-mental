@@ -25,13 +25,8 @@
     const submitLoginButton = document.querySelector('.btn-submit-login');
     const submitSignInButton = document.querySelector('.btn-submit-signup');
 
-    const postTitleEditFormInput = document.getElementById('title-post-input');
-
     const postFileImagemLabelP = document.getElementById('input-file-label-p');
     const postFileImagemLabel = document.querySelector('.post-file-label');
-
-    const textPostLabel = document.querySelector('.text-post-label');
-    const textPostInput = document.getElementById('text-post-input');
 
     const signInLink = document.querySelector('.signin-link');
 
@@ -50,6 +45,11 @@
     const signOut = document.getElementById('linkDeslogar');
 
     const goToPost = document.getElementsByClassName('go-to-post');
+
+    const postTitleEditFormInput = document.getElementsByClassName('title-post-input');
+
+    const textPostLabel = document.getElementsByClassName('text-post-label');
+    const textPostInput = document.getElementsByClassName('text-area-post');
 
     let idArticle = null;
 
@@ -120,20 +120,9 @@
         }
 
         //Change the text of this component
-        if (postTitleEditFormInput) {
-            postTitleEditFormInput.placeholder = data[valueSelect].titleEditFormPlaceholder;
-        }
-
-        //Change the text of this component
         if (postFileImagemLabelP) {
             postFileImagemLabelP.textContent = data[valueSelect].coverImagePostLabelP;
             postFileImagemLabel.textContent = data[valueSelect].coverImagePostLabel;
-        }
-
-        //Change the text of this component
-        if (textPostLabel) {
-            textPostLabel.textContent = data[valueSelect].textPostLabel;
-            textPostInput.placeholder = data[valueSelect].textPostPlaceholder;
         }
 
         //Change the text of this component
@@ -169,6 +158,21 @@
         }
 
         //Change the text of this component
+        if (postTitleEditFormInput) {
+            for (var i = 0, len = postTitleEditFormInput.length; i < len; i++) {
+                postTitleEditFormInput[i].placeholder = data[valueSelect].titleEditFormPlaceholder;
+            }
+        }
+
+        //Change the text of this component
+        if (textPostLabel) {
+            for (var i = 0, len = textPostLabel.length; i < len; i++) {
+                textPostLabel[i].textContent = data[valueSelect].textPostLabel;
+                textPostInput[i].placeholder = data[valueSelect].textPostPlaceholder;
+            }
+        }
+
+        //Change the text of this component
         if (signOut) {
             signOut.innerHTML = '<i class="fas fa-reply" aria-hidden="true"></i> ' + data[valueSelect].signOut.toUpperCase();
         }
@@ -188,7 +192,6 @@
         <?php
         $sql = "SELECT * from artigos";
 
-        //Conectar o banco
         $bd = conexao();
         $resultado = $bd->query($sql);
 

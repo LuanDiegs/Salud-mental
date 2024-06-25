@@ -6,14 +6,18 @@ include_once '../banco.php';
 $bd = conexao();
 
 $guid = bin2hex(openssl_random_pseudo_bytes(16));
-$titulo = filter_input(INPUT_POST, "title-post-input");
-$texto = filter_input(INPUT_POST, "text-post-input");
+$tituloPt = filter_input(INPUT_POST, "title-post-input-pt");
+$tituloEn = filter_input(INPUT_POST, "title-post-input-en");
+$tituloEsp = filter_input(INPUT_POST, "title-post-input-esp");
+$textoPt = filter_input(INPUT_POST, "text-post-input-pt");
+$textoEn = filter_input(INPUT_POST, "text-post-input-en");
+$textoEsp = filter_input(INPUT_POST, "text-post-input-esp");
 $imagem = $_FILES["validatedCustomFile"];
 $imagemNome = $guid . $imagem["name"];
 $usuarioId = $_SESSION["usuario"]["id"];
 $idArtigo = $_GET["id"];
 
-if ($titulo && $texto && $imagemNome && $usuarioId && $idArtigo) {
+if ($usuarioId && $idArtigo) {
     try {
         $sqlGet = "SELECT * FROM artigos WHERE id = '$idArtigo'";
         $resultadoGet = $bd->query($sqlGet);
@@ -27,10 +31,12 @@ if ($titulo && $texto && $imagemNome && $usuarioId && $idArtigo) {
             "UPDATE artigos 
             SET
                 nomeImagem = '$imagemNome',
-                tituloPortugues = '$titulo',
-                textoPortugues = '$texto',
-                textoIngles = '$texto',
-                textoEspanhol = '$texto'
+                tituloPortugues = '$tituloPt',
+                tituloIngles = '$tituloEn',
+                tituloEspanhol = '$tituloEsp',
+                textoPortugues = '$textoPt',
+                textoIngles = '$textoEn',
+                textoEspanhol = '$textoEsp'
             WHERE
                 id = '$idArtigo'";
 
