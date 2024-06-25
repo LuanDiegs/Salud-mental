@@ -21,9 +21,9 @@ if ($titulo && $texto && $imagemNome && $usuarioId) {
 
         $sqlInsert =
             "INSERT IGNORE INTO artigos 
-                (idUsuarioCriador, dataCriacao, nomeImagem, titulo, textoPortugues, textoIngles, textoEspanhol)
+                (idUsuarioCriador, dataCriacao, nomeImagem, tituloPortugues, tituloIngles, tituloEspanhol, textoPortugues, textoIngles, textoEspanhol)
             VALUES 
-                ('$usuarioId', '" . date("Y/m/d") . "', '$imagemNome', '$titulo', '$texto', '$texto', '$texto')";
+                ('$usuarioId', '" . date("Y/m/d") . "', '$imagemNome', '$titulo', '$titulo', '$titulo', '$texto', '$texto', '$texto')";
 
         $bd->query($sqlInsert);
 

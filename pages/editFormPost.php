@@ -91,8 +91,8 @@
     </div>
 
     <?php
-    include '../parts/navbar.php';
     include_once '../functions/banco.php';
+    include '../parts/navbar.php';
 
     $hrefCadastrarOuEditar = "../functions/posts/cadastrar.php";
     $artigo = null;
@@ -110,7 +110,7 @@
 
     <div class="container container-editFormPost">
         <form id="editFormPost" method="POST" action="<?= $hrefCadastrarOuEditar; ?>" enctype="multipart/form-data">
-            <input type="titlePost" class="form-control" name="title-post-input" id="title-post-input" <?php if ($artigo && $artigo['titulo']) echo 'value="' . $artigo['titulo'] . '"' ?> focus>
+            <input type="titlePost" class="form-control" name="title-post-input" id="title-post-input" <?php if ($artigo && $artigo['tituloPortugues']) echo 'value="' . $artigo['tituloPortugues'] . '"' ?> focus>
             <p id="input-file-label-p">Choose the cover image of your post</p>
             <div class="custom-file">
                 <input type="file" class="custom-file-input" name="validatedCustomFile" id="validatedCustomFile">
@@ -135,8 +135,12 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="../functions/translate.js" type="text/javascript"></script>
 </body>
+
+
+<?php
+include_once '../functions/translate.php';
+?>
 
 <script>
     // Run when the page is loaded
@@ -149,7 +153,6 @@
     //File chooser js
     $(".custom-file-input").on("change", function() {
         var fileName = $(this).val().split("\\").pop();
-        console.log($(this).val().split("\\").pop())
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
 

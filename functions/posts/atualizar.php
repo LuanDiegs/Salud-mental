@@ -27,7 +27,7 @@ if ($titulo && $texto && $imagemNome && $usuarioId && $idArtigo) {
             "UPDATE artigos 
             SET
                 nomeImagem = '$imagemNome',
-                titulo = '$titulo',
+                tituloPortugues = '$titulo',
                 textoPortugues = '$texto',
                 textoIngles = '$texto',
                 textoEspanhol = '$texto'

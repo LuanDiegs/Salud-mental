@@ -71,9 +71,14 @@
         width: 30%;
         transition: 0.5s;
     }
+
+    .fas.fa-user {
+        margin-right: 2%;
+    }
 </style>
 
 <?php
+
 if (session_status() !== PHP_SESSION_ACTIVE) {
     //Session do carrinho
     session_start();

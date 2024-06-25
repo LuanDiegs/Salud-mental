@@ -66,35 +66,8 @@
     <div class="container-cards">
         <div class="container">
             <div class="row">
-                <div class="col-sm-4">
-                    <div class="card h-100">
-                        <img src="resources/imagens/article1.jpg" class="card-img-top" alt="...">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title card-title-1">Videgames e como isso afeta a personalidade</h5>
-                            <a href="pages/postPage.php?id=1" class="btn btn-card mt-auto">Go to post</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="card h-100">
-                        <img src="resources/imagens/article2.jpg" class="card-img-top" alt="...">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title card-title-2">Natureza e a saude mental</h5>
-                            <a href="pages/postPage.php?id=2" class="btn btn-card mt-auto">Go to post</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="card h-100">
-                        <img src="resources/imagens/article3.jpg" class="card-img-top" alt="...">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title card-title-3">Saúde mental e o RPG</h5>
-                            <a href="pages/postPage.php?id=3" class="btn btn-card mt-auto">Go to post</a>
-                        </div>
-                    </div>
-                </div>
-
-                <?php while ($dado = $resultado->fetch(PDO::FETCH_ASSOC)) {
+                <?php
+                while ($dado = $resultado->fetch(PDO::FETCH_ASSOC)) {
                     $nomeImagem = "default.jpg";
 
                     if ($dado['nomeImagem']) {
@@ -105,8 +78,8 @@
                         <div class="card h-100">
                             <img src="resources/imagens/<?= $nomeImagem; ?>" class="card-img-top" alt="...">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title card-title-<?= $dado["id"]; ?>"><?= $dado["titulo"]; ?></h5>
-                                <a href="pages/postPage.php?id=<?= $dado["id"]; ?>" class="btn btn-card mt-auto">Go to post</a>
+                                <h5 class="card-title card-title-<?= $dado['id'] ?>"><?= $dado["tituloPortugues"]; ?></h5>
+                                <a href="pages/postPage.php?id=<?= $dado['id'] ?>" class="btn btn-card mt-auto go-to-post">Go to post</a>
                             </div>
                         </div>
                     </div>
@@ -120,8 +93,11 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="functions/translate.js" type="text/javascript"></script>
 </body>
+
+<?php
+include_once './functions/translate.php';
+?>
 
 <script>
     // Run when the page is loaded
