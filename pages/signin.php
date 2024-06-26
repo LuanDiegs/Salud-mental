@@ -60,7 +60,7 @@
 
     <div class="container container-signup">
         <h2 class="text-center signup-container-title" style="font-weight: 500;"> Do your sign up here!</h2>
-        <form id="signIn" method="POST" action="../functions/login/cadastrar.php">
+        <form id="signIn" method="POST" action="../functions/login/cadastrar.php" onSubmit="return validateForm();">
             <div class="form-group">
                 <label class="name-label" for="name">Name</label>
                 <input type="name" class="form-control" id="name" name="name" required>
@@ -75,7 +75,7 @@
             </div>
 
             <div class="form-group">
-                <label class="password-confirmation-label" for="password-confirmation">Password confirmation</label>
+                <label class="password-confirmation-label" for="password-confirmation" invalid>Password confirmation</label>
                 <input type="password" class="form-control" id="password-confirmation" onkeyup="checkPasswords()" required>
                 <p id='message-confirmation-passwords'></p>
             </div>
@@ -92,20 +92,31 @@ include_once '../functions/translate.php';
 ?>
 
 <script>
-    var checkPasswords = function() {
+    let passwordCheck = false;
+
+    let checkPasswords = function() {
         const valueSelect = langSelect.value;
         const passwordValue = document.getElementById('password').value;
         const passwordConfirmationValue = document.getElementById('password-confirmation').value;
+        const formSignIn = document.getElementById('signIn');
 
         if (passwordValue && passwordConfirmationValue) {
             if (passwordValue == passwordConfirmationValue) {
                 messageConfirmationPasswords.style.color = 'green';
                 messageConfirmationPasswords.textContent = data[valueSelect].messageConfirmationPasswordsMatch;
+
+                passwordCheck = true;
             } else {
                 messageConfirmationPasswords.style.color = 'red';
                 messageConfirmationPasswords.textContent = data[valueSelect].messageConfirmationPasswordsDontMatch;
+
+                passwordCheck = false;
             }
         }
+    }
+
+    function validateForm() {
+        return passwordCheck;
     }
 
     // Run when the page is loaded
