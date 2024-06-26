@@ -57,10 +57,52 @@
 
     let idArticle = null;
 
+    //Create json articles
+    var articles = {
+        "pt_br": [],
+        "en_us": [],
+        "esp": []
+    };
+
+    //Get the id of the article
     if (parseURLParams(location.href)) {
         if (parseURLParams(location.href).id) {
             idArticle = parseURLParams(location.href).id[0];
         }
+    }
+
+    //Put the data in the array
+    function loadDataArticles() {
+        <?php
+        $sql = "SELECT * from artigos";
+
+        $bd = conexao();
+        $resultado = $bd->query($sql);
+
+        if ($resultado) {
+            while ($dado = $resultado->fetch(PDO::FETCH_ASSOC)) {
+        ?>
+                var textTitleArticle = "article<?= $dado["id"]; ?>Title";
+                var textArticle = "article<?= $dado["id"]; ?>Text";
+
+                articles["pt_br"][<?= $dado["id"]; ?>] = {
+                    [textTitleArticle]: '<?= addslashes($dado["tituloPortugues"]); ?>',
+                    [textArticle]: '<?= addslashes($dado["textoPortugues"]); ?>'
+                };
+
+                articles["en_us"][<?= $dado["id"]; ?>] = {
+                    [textTitleArticle]: '<?= addslashes($dado["tituloIngles"]); ?>',
+                    [textArticle]: '<?= addslashes($dado["textoIngles"]); ?>'
+                };
+
+                articles["esp"][<?= $dado["id"]; ?>] = {
+                    [textTitleArticle]: '<?= addslashes($dado["tituloEspanhol"]); ?>',
+                    [textArticle]: '<?= addslashes($dado["textoEspanhol"]); ?>'
+                };
+        <?php
+            }
+        }
+        ?>
     }
 
     function changeLanguage() {
@@ -190,62 +232,21 @@
             checkPasswords();
         }
 
-        //Create json articles
-        var articles = {
-            "pt_br": [],
-            "en_us": [],
-            "esp": []
-        };
-
-        <?php
-        $sql = "SELECT * from artigos";
-
-        $bd = conexao();
-        $resultado = $bd->query($sql);
-
-        if ($resultado) {
-            while ($dado = $resultado->fetch(PDO::FETCH_ASSOC)) {
-        ?>
-                var textTitleArticle = "article<?= $dado["id"]; ?>Title";
-                var textArticle = "article<?= $dado["id"]; ?>Text";
-
-                articles["pt_br"][<?= $dado["id"]; ?>] = {
-                    [textTitleArticle]: '<?= addslashes($dado["tituloPortugues"]); ?>',
-                    [textArticle]: '<?= addslashes($dado["textoPortugues"]); ?>'
-                };
-
-                articles["en_us"][<?= $dado["id"]; ?>] = {
-                    [textTitleArticle]: '<?= addslashes($dado["tituloIngles"]); ?>',
-                    [textArticle]: '<?= addslashes($dado["textoIngles"]); ?>'
-                };
-
-                articles["esp"][<?= $dado["id"]; ?>] = {
-                    [textTitleArticle]: '<?= addslashes($dado["tituloEspanhol"]); ?>',
-                    [textArticle]: '<?= addslashes($dado["textoEspanhol"]); ?>'
-                };
-
-                //Put the title in the correct language in the card
-                const card<?= $dado['id'] ?>TitleText = document.querySelector(`.card-title-<?= $dado["id"]; ?>`);
-                if (card<?= $dado['id'] ?>TitleText) {
-                    card<?= $dado['id'] ?>TitleText.textContent = articles[valueSelect][<?= $dado["id"]; ?>].article<?= $dado['id'] ?>Title;
-                }
-        <?php
-            }
-        }
-        ?>
-
         //Change the text of this component
         if (postText) {
+            loadDataArticles();
+
             var indexPostText = idArticle;
             var textArticle = `article${idArticle.toString()}Text`;
 
             if (articles[valueSelect][indexPostText][textArticle]) {
-                postText.textContent = articles[valueSelect][i][textArticle];
+                postText.textContent = articles[valueSelect][idArticle][textArticle];
             }
         }
 
         //Change the text of this component
         if (postTitleText) {
+            loadDataArticles();
             var indexPostText = idArticle;
             var textTitleArticle = `article${idArticle.toString()}Title`;
 
@@ -254,7 +255,26 @@
             }
         }
 
+        //Put the title in the correct language in the card
+        const cards = document.getElementsByClassName(`card-title`);
+        if (cards) {
+            loadDataArticles();
+
+            const posts = document.getElementsByClassName('card-title-id');
+            var idPosts = [];
+
+            for (var i = 0, len = posts.length; i < len; i++) {
+                idPosts[i] = posts[i].value;
+            }
+
+            for (var i = 0, len = cards.length; i < len; i++) {
+                cards[i].textContent = articles[valueSelect][idPosts[i]][`article${idPosts[i]}Title`];
+            }
+        }
+
         if (myPostsTitlePost) {
+            loadDataArticles();
+
             const posts = document.getElementsByClassName('card-post-title-id');
             var idPosts = [];
 
@@ -268,6 +288,51 @@
         }
     }
 
+    function fixLinks() {
+        //Put the corret link in the href of the navbar links
+        const navbarHome = document.getElementById("linkHome");
+        navbarHome.href = "../index.php";
+
+        const navbarLogin = document.getElementById("linkLogin");
+        if (navbarLogin) {
+            navbarLogin.href = "login.php";
+        }
+
+        const navbarMyPosts = document.getElementById("linkMyPosts");
+        if (navbarMyPosts) {
+            navbarMyPosts.href = "myPosts.php";
+        }
+
+        const navbarDeslogar = document.getElementById("linkDeslogar");
+        if (navbarDeslogar) {
+            navbarDeslogar.href = "../functions/login/deslogar.php";
+        }
+    }
+
+
+    //Commom
+    function parseURLParams(url) {
+        var queryStart = url.indexOf("?") + 1,
+            queryEnd = url.indexOf("#") + 1 || url.length + 1,
+            query = url.slice(queryStart, queryEnd - 1),
+            pairs = query.replace(/\+/g, " ").split("&"),
+            parms = {},
+            i, n, v, nv;
+
+        if (query === url || query === "") return;
+
+        for (i = 0; i < pairs.length; i++) {
+            nv = pairs[i].split("=", 2);
+            n = decodeURIComponent(nv[0]);
+            v = decodeURIComponent(nv[1]);
+
+            if (!parms.hasOwnProperty(n)) parms[n] = [];
+            parms[n].push(nv.length === 2 ? v : null);
+        }
+        return parms;
+    }
+
+    // Texts data
     var data = {
         "en_us": {
             "chooseLanguage": "Write the text in the language that you want!",
@@ -359,49 +424,5 @@
             "title": "ECIA - Saúde mental",
             "titleEditFormPlaceholder": "Insira o título da postagem"
         }
-    }
-
-    function fixLinks() {
-        //Put the corret link in the href of the navbar links
-        const navbarHome = document.getElementById("linkHome");
-        navbarHome.href = "../index.php";
-
-        const navbarLogin = document.getElementById("linkLogin");
-        if (navbarLogin) {
-            navbarLogin.href = "login.php";
-        }
-
-        const navbarMyPosts = document.getElementById("linkMyPosts");
-        if (navbarMyPosts) {
-            navbarMyPosts.href = "myPosts.php";
-        }
-
-        const navbarDeslogar = document.getElementById("linkDeslogar");
-        if (navbarDeslogar) {
-            navbarDeslogar.href = "../functions/login/deslogar.php";
-        }
-    }
-
-
-    //Commom
-    function parseURLParams(url) {
-        var queryStart = url.indexOf("?") + 1,
-            queryEnd = url.indexOf("#") + 1 || url.length + 1,
-            query = url.slice(queryStart, queryEnd - 1),
-            pairs = query.replace(/\+/g, " ").split("&"),
-            parms = {},
-            i, n, v, nv;
-
-        if (query === url || query === "") return;
-
-        for (i = 0; i < pairs.length; i++) {
-            nv = pairs[i].split("=", 2);
-            n = decodeURIComponent(nv[0]);
-            v = decodeURIComponent(nv[1]);
-
-            if (!parms.hasOwnProperty(n)) parms[n] = [];
-            parms[n].push(nv.length === 2 ? v : null);
-        }
-        return parms;
     }
 </script>

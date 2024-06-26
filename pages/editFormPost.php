@@ -194,7 +194,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <p id="pt-choice">ESPANÕL</p>
+                        <p id="pt-choice">ESPAÑOL</p>
                         <div class="container container-editFormPost">
                             <input type="titlePost" class="form-control title-post-input" name="title-post-input-esp" id="title-post-input-esp" <?php if ($artigo && $artigo['tituloEspanhol']) echo 'value="' . $artigo['tituloEspanhol'] . '"' ?> focus>
                             <div class="form-group">

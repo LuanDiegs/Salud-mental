@@ -78,7 +78,8 @@
                         <div class="card h-100">
                             <img src="resources/imagens/<?= $nomeImagem; ?>" class="card-img-top" alt="...">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title card-title-<?= $dado['id'] ?>"><?= $dado["tituloPortugues"]; ?></h5>
+                                <input class="card-title-id" type="hidden" value="<?= $dado['id']; ?>">
+                                <h5 class="card-title card-title-<?= $dado['id'] ?>"></h5>
                                 <a href="pages/postPage.php?id=<?= $dado['id'] ?>" class="btn btn-card mt-auto go-to-post">Go to post</a>
                             </div>
                         </div>
