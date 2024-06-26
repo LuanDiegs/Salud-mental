@@ -1,0 +1,8 @@
+1 - Install XAMPP
+https://www.apachefriends.org/pt_br/download.html
+
+2 - Open MySQL Admin
+
+3 - Go to import tab in the top of the site;
+
+4 - Choose the file and import the SQL
