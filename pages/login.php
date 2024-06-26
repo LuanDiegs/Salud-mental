@@ -68,7 +68,7 @@
     include_once '../functions/banco.php';
     include '../parts/navbar.php';
 
-    if ($_GET["invalido"]) {
+    if (isset($_GET["invalido"]) && $_GET["invalido"]) {
         echo '
         <script>
             let messages = {

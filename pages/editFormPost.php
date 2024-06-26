@@ -178,8 +178,8 @@
                         <div class="container container-editFormPost">
                             <input type="titlePost" class="form-control title-post-input" name="title-post-input-pt" id="title-post-input-pt" <?php if ($artigo && $artigo['tituloPortugues']) echo 'value="' . $artigo['tituloPortugues'] . '"' ?> focus>
                             <div class="form-group">
-                                <label class="text-post-label" for="text-post-input-pt" required>Main text post</label>
-                                <textarea class="form-control text-area-post" name="text-post-input-pt" id="text-post-input-pt" rows="10" required><?php if ($artigo && $artigo['textoPortugues']) echo $artigo['textoPortugues'] ?></textarea>
+                                <label class="text-post-label" for="text-post-input-pt">Main text post</label>
+                                <textarea class="form-control text-area-post" name="text-post-input-pt" id="text-post-input-pt" rows="10"><?php if ($artigo && $artigo['textoPortugues']) echo $artigo['textoPortugues'] ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -188,8 +188,8 @@
                         <div class="container container-editFormPost">
                             <input type="titlePost" class="form-control title-post-input" name="title-post-input-en" id="title-post-input-en" <?php if ($artigo && $artigo['tituloIngles']) echo 'value="' . $artigo['tituloIngles'] . '"' ?> focus>
                             <div class="form-group">
-                                <label class="text-post-label" for="text-post-input-en" required>Main text post</label>
-                                <textarea class="form-control text-area-post" name="text-post-input-en" id="text-post-input-en" rows="10" required><?php if ($artigo && $artigo['textoIngles']) echo $artigo['textoIngles'] ?></textarea>
+                                <label class="text-post-label" for="text-post-input-en">Main text post</label>
+                                <textarea class="form-control text-area-post" name="text-post-input-en" id="text-post-input-en" rows="10"><?php if ($artigo && $artigo['textoIngles']) echo $artigo['textoIngles'] ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -198,8 +198,8 @@
                         <div class="container container-editFormPost">
                             <input type="titlePost" class="form-control title-post-input" name="title-post-input-esp" id="title-post-input-esp" <?php if ($artigo && $artigo['tituloEspanhol']) echo 'value="' . $artigo['tituloEspanhol'] . '"' ?> focus>
                             <div class="form-group">
-                                <label class="text-post-label" for="text-post-input-esp" required>Main text post</label>
-                                <textarea class="form-control text-area-post" name="text-post-input-esp" id="text-post-input-esp" rows="10" required><?php if ($artigo && $artigo['textoEspanhol']) echo $artigo['textoEspanhol'] ?></textarea>
+                                <label class="text-post-label" for="text-post-input-esp">Main text post</label>
+                                <textarea class="form-control text-area-post" name="text-post-input-esp" id="text-post-input-esp" rows="10"><?php if ($artigo && $artigo['textoEspanhol']) echo $artigo['textoEspanhol'] ?></textarea>
                             </div>
                         </div>
                     </div>

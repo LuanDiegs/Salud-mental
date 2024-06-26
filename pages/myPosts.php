@@ -123,7 +123,8 @@
                             <img src="../resources/imagens/<?= $nomeImagem; ?>" class="card-img-myarticle" alt="...">
                         </div>
                         <div class="col-md-6 my-auto text-center">
-                            <h5 class="card-post-title my-auto"><?= $dado['tituloPortugues']; ?></h5>
+                            <input class="card-post-title-id" type="hidden" value="<?= $dado['id']; ?>">
+                            <h5 class="card-post-title my-auto"></h5>
                         </div>
                         <div class="col-md-3 my-auto">
                             <div class="row">

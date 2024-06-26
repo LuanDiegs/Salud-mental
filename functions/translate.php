@@ -51,6 +51,10 @@
     const textPostLabel = document.getElementsByClassName('text-post-label');
     const textPostInput = document.getElementsByClassName('text-area-post');
 
+    const chooseLanguage = document.getElementById('choose-language');
+
+    const myPostsTitlePost = document.getElementsByClassName('card-post-title');
+
     let idArticle = null;
 
     if (parseURLParams(location.href)) {
@@ -177,6 +181,10 @@
             signOut.innerHTML = '<i class="fas fa-reply" aria-hidden="true"></i> ' + data[valueSelect].signOut.toUpperCase();
         }
 
+        if (chooseLanguage) {
+            chooseLanguage.textContent = data[valueSelect].chooseLanguage;
+        }
+
         //Change the text of this component
         if (messageConfirmationPasswords) {
             checkPasswords();
@@ -232,7 +240,7 @@
             var textArticle = `article${idArticle.toString()}Text`;
 
             if (articles[valueSelect][indexPostText][textArticle]) {
-                postText.textContent = articles[valueSelect][indexPostText][textArticle];
+                postText.textContent = articles[valueSelect][i][textArticle];
             }
         }
 
@@ -245,10 +253,24 @@
                 postTitleText.textContent = articles[valueSelect][indexPostText][textTitleArticle];
             }
         }
+
+        if (myPostsTitlePost) {
+            const posts = document.getElementsByClassName('card-post-title-id');
+            var idPosts = [];
+
+            for (var i = 0, len = posts.length; i < len; i++) {
+                idPosts[i] = posts[i].value;
+            }
+
+            for (var i = 0, len = myPostsTitlePost.length; i < len; i++) {
+                myPostsTitlePost[i].textContent = articles[valueSelect][idPosts[i]][`article${idPosts[i]}Title`];
+            }
+        }
     }
 
     var data = {
         "en_us": {
+            "chooseLanguage": "Write the text in the language that you want!",
             "coverImagePostLabelP": "Choose the cover image of your post",
             "coverImagePostLabel": "Choose a image file",
             "createPostButton": "Create a post",
@@ -278,6 +300,7 @@
             "titleEditFormPlaceholder": "Enter the title of the post"
         },
         "esp": {
+            "chooseLanguage": "Escriba el texto en el idioma que desea!",
             "coverImagePostLabelP": "Introduzca la imagen de portada de su post",
             "coverImagePostLabel": "Elige un archivo de imagen",
             "createPostButton": "Crear una publicación",
@@ -307,6 +330,7 @@
             "titleEditFormPlaceholder": "Introduzca el título del post"
         },
         "pt_br": {
+            "chooseLanguage": "Escreva o texto no idioma que deseja!",
             "coverImagePostLabelP": "Insira a imagem de capa do seu post",
             "coverImagePostLabel": "Escolha um arquivo de imagem",
             "createPostButton": "Criar uma postagem",
